@@ -10,14 +10,20 @@
 
   <body>
     <div class="viewer" ng-controller="ViewerController as viewer">
-      <form ng-submit="viewer.getPages();">
+      <form autocomplete="on" ng-submit="viewer.getPages(); viewer.pushKeys();">
         <input
           type="text"
           ng-model="viewer.search"/>
       </form>
-      <p>
-        {{ viewer.results | json}}
-      </p>
+      <div ng-repeat="article in viewer.articles">
+        <p>
+          Title: {{ article.title }}
+        </p>
+        <p>
+          Extract: {{ article.extract }}
+        </p>
+      </div>
+
     </div>
 
 
