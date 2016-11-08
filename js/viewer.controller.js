@@ -4,7 +4,6 @@ function ViewerController(ViewerService){
   ctrl.search = '';
   ctrl.pages= '';
   ctrl.pageIds = [];
-
   ctrl.articles = [];
 
 
@@ -20,7 +19,8 @@ function ViewerController(ViewerService){
           ctrl.articles.push({
             pageid: key,
             title: value.title,
-            extract: value.extract
+            extract: value.extract,
+            pageLink: 'https://en.wikipedia.org/?curid=' + key
           });
         });
 

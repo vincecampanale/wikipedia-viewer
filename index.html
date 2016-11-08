@@ -4,26 +4,45 @@
     <meta charset="utf-8">
     <title>WikiSearch</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="js/libs/angular.js"></script>
   </head>
 
   <body>
     <div class="viewer" ng-controller="ViewerController as viewer">
-      <form autocomplete="on" ng-submit="viewer.getPages(); viewer.pushKeys();">
-        <input
-          type="text"
-          ng-model="viewer.search"/>
+      <form class="search_form" autocomplete="on" ng-hide="hideForm == true;">
+        <div class="search">
+          <input
+            type="text"
+            class="searchTerm"
+            placeholder="What are you interesting in learning about?"
+            ng-model="viewer.search">
+          <button
+            type="submit"
+            class="searchButton"
+            ng-click="viewer.getPages(); viewer.pushKeys(); hideForm = true;">
+            <i class="fa fa-search"></i>
+         </button>
+         <a ng-click="hideForm = true;" href="https://en.wikipedia.org/wiki/Special:Random">Or click here for a random article.</a>
+         </div>
       </form>
-      <div ng-repeat="article in viewer.articles">
-        <p>
-          Title: {{ article.title }}
-        </p>
-        <p>
-          Extract: {{ article.extract }}
-        </p>
-      </div>
 
+      <div
+        class="result"
+        ng-repeat="article in viewer.articles">
+
+        <p class="article__title">
+          {{ article.title }}
+        </p>
+        <p class="article__extract">
+          {{ article.extract }}
+        </p>
+        <a href={{article.pageLink}}>
+          Go to article.
+        </a>
+      </div>
     </div>
 
 
